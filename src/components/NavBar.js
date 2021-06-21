@@ -4,9 +4,9 @@ class NavBar extends Component {
     render() {
         return (
             <nav className="navbar-fixed-top">
-                <div className="logo">
+                <span className="logo">
                     <a href="#"><img src={process.env.PUBLIC_URL + '/logo.png'} alt="Express Install" className="brand-img"/></a>
-                </div>
+                </span>
                 <ul className="nav-links">
                     <li><a href="#">Help</a></li>
                     <li><a href="#">Github</a></li>
@@ -14,7 +14,7 @@ class NavBar extends Component {
                     <li><a href="#">Sign in</a></li>
                     <li><a href="#">Sign up</a></li>
                 </ul>
-                <div className="burger"></div>
+                {/*<div className="burger"></div>*/}
             </nav>
         );
     }
