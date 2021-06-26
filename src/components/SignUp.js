@@ -18,6 +18,7 @@ import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
+import {red} from "@material-ui/core/colors";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -37,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  passwordWarning: {
+    fontSize: "12px",
+    color: "#ff6347"
+  }
 }));
 
 export default function SignUp() {
@@ -72,7 +77,7 @@ export default function SignUp() {
     }
     try {
       const res = await axios.post(
-        "http://139.162.28.44:3000/v1/auth/register",
+        "https://api.expressinstall.tech/v1/auth/register",
         {
           name: userName,
           email: user.email,
@@ -163,6 +168,9 @@ export default function SignUp() {
                 onChange={onChangeInput}
               />
             </Grid>
+          </Grid>
+          <Grid item xs={12} className={classes.passwordWarning}>
+              *Password must be contained text and numbers. At least 8 characters
           </Grid>
           <Button
             type="submit"

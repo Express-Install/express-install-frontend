@@ -27,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    fontSize: "15px"
   },
   avatar: {
     margin: theme.spacing(1),
@@ -88,12 +89,13 @@ export default function SignIn() {
       return;
     }
     try {
-      const res = await axios.post("http://139.162.28.44:3000/v1/auth/login", {
+      const res = await axios.post("https://api.expressinstall.tech/v1/auth/login", {
         email: user.email,
         password: user.password,
       });
       setUser({ email: "", password: "" });
       localStorage.setItem("tokenStore", res.data.tokens.access.token);
+      localStorage.setItem("email", JSON.stringify(user.email));
       if (checked) {
         localStorage.setItem("password", JSON.stringify(user.password));
       }
@@ -107,6 +109,8 @@ export default function SignIn() {
     setChecked(checked ? false : true);
   };
 
+
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -115,7 +119,7 @@ export default function SignIn() {
           <Avatar
             src={process.env.PUBLIC_URL + "/logo.png"}
             className={classes.large}>
-            <LockOutlinedIcon />
+            {/*<LockOutlinedIcon />*/}
           </Avatar>
         </Link>
         <Typography component="h1" variant="h5">
