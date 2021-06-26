@@ -1,40 +1,22 @@
-import './App.css';
-import {Component} from "react";
-import NavBar from "./components/NavBar";
-import HomePageIntro from "./components/HomePageIntro";
-import Form from "./components/Form";
-import Suggestion from "./components/Suggestion";
-import Footer from "./components/Footer";
+/** @format */
+
+import React from "react";
+import { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+import Home from "./components/Home";
+import SignIn from "./components/SignIn";
+import SignUp from "./components/SignUp";
 
 class App extends Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-
-        }
-    }
-    render() {
-        return (
-            <div>
-                <NavBar/>
-                <HomePageIntro/>
-                <div className="seperate"/>
-                <div className="container alert alert-warning js-homepage-old-os hidden">
-                    <p>As of February 14th, 2021 Express Install has ended support for Windows XP and Windows Vista as well as
-                        the related server platforms Server 2003 and Server 2008.</p>
-                    <p>You'll need to upgrade your Windows version to continue using Express.</p>
-                </div>
-                {/*Form*/}
-                <Form/>
-                <div className="separate"/>
-                {/*Suggestion*/}
-                <Suggestion/>
-                {/*Footer*/}
-                <Footer/>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <Router>
+        <Route path="/" component={Home} exact />
+        <Route path="/sign-in" component={SignIn} exact />
+        <Route path="/sign-up" component={SignUp} exact />
+      </Router>
+    );
+  }
 }
 
 export default App;
