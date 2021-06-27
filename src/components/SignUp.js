@@ -18,7 +18,7 @@ import {
   NotificationContainer,
   NotificationManager,
 } from "react-notifications";
-import {red} from "@material-ui/core/colors";
+import {API_BaseURL} from "../constants/api";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -61,6 +61,8 @@ export default function SignUp() {
       case "error":
         NotificationManager.error(message, "ERROR");
         break;
+      case "info":
+        NotificationManager.info(message, "INFO");
       default:
         break;
     }
@@ -77,7 +79,7 @@ export default function SignUp() {
     }
     try {
       const res = await axios.post(
-        "https://api.expressinstall.tech/v1/auth/register",
+        API_BaseURL+"/v1/auth/register",
         {
           name: userName,
           email: user.email,

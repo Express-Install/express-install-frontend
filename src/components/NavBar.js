@@ -1,19 +1,37 @@
 import {Component} from "react";
+import axios from "axios";
+import {API_BaseURL} from "../constants/api";
 
 class NavBar extends Component {
     render() {
-        const getLeftStringOfAt = (str) => {
-            let subString = str.split("@");
-            subString = subString[0].slice(1);
-            return subString;
-        };
+
+        const logoutUser = async () => {
+            try{
+                 await axios.post(API_BaseURL+"/v1/auth/logout",
+                    {refreshToken: localStorage.getItem("refreshToken")},
+                    {headers: {'Content-Type': 'application/json'}}
+                    );
+                await localStorage.clear();
+                // eslint-disable-next-line no-restricted-globals
+                await history.back();
+            }catch (err){
+                console.log(err);
+            }
+        }
 
         const isLogin = () => {
-            if (localStorage && localStorage.getItem("email")){
-                let displayName = getLeftStringOfAt(localStorage.getItem("email"));
-                console.log(displayName);
+            if (localStorage && localStorage.getItem("userName")){
+                let displayName = localStorage.getItem("userName");
                 return (
-                    <li><a style={{cursor: "pointer"}} href="/">Chào {displayName}</a></li>
+                    <div className="dropdown">
+                        <button className="btn btn-primary dropdown-toggle" type="button"
+                                data-toggle="dropdown">{displayName} &nbsp;
+                            <span className="caret"/></button>
+                        <ul className="dropdown-menu">
+                            <li onClick={logoutUser}><a href="#">Logout</a></li>
+                        </ul>
+                    </div>
+                    // <li><a style={{cursor: "pointer"}} href="/">Chào {displayName}</a></li>
                 )
             }else return (
                 <li><a href="/sign-in">Sign in/Sign up</a></li>
