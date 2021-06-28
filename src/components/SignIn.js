@@ -112,10 +112,11 @@ export default function SignIn() {
                 localStorage.setItem("password", JSON.stringify(user.password));
             }
             history.push("/");
-            await axios.post(API_BaseURL + "/v1/auth/send-verification-email",
-                {},
-                {headers: {Authorization: `Bearer ${res.data.tokens.access.token}`}}
-            );
+            /*Verified email*/
+            // await axios.post(API_BaseURL + "/v1/auth/send-verification-email",
+            //     {},
+            //     {headers: {Authorization: `Bearer ${res.data.tokens.access.token}`}}
+            // );
         } catch (err) {
             createNotification("error", "Username or password is incorrect ");
         }
@@ -125,18 +126,18 @@ export default function SignIn() {
         setChecked(checked ? false : true);
     };
 
-    const sendVerifyEmail = async () => {
-        try {
-            const res = await axios.post(API_BaseURL + "/v1/auth/send-verification-email",
-                {},
-                config
-            );
-            console.log(res.data);
-            createNotification("info", "Check your email for verification");
-        } catch (err) {
-            createNotification("error", "Something wrong when sending verifycation email");
-        }
-    }
+    // const sendVerifyEmail = async () => {
+    //     try {
+    //         const res = await axios.post(API_BaseURL + "/v1/auth/send-verification-email",
+    //             {},
+    //             config
+    //         );
+    //         console.log(res.data);
+    //         createNotification("info", "Check your email for verification");
+    //     } catch (err) {
+    //         createNotification("error", "Something wrong when sending verifycation email");
+    //     }
+    // }
 
     return (
         <Container component="main" maxWidth="xs">
