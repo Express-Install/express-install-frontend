@@ -18,8 +18,9 @@ import Container from "@material-ui/core/Container";
 import "react-notifications/lib/notifications.css";
 import {
     NotificationContainer,
-    NotificationManager,
+    // NotificationManager,
 } from "react-notifications";
+import {createNotification} from "../Helper/notification";
 import {API_BaseURL} from "../constants/api";
 
 const useStyles = makeStyles((theme) => ({
@@ -48,26 +49,14 @@ export default function SignIn() {
 
     let history = useHistory();
 
-    const createNotification = (type, message) => {
-        switch (type) {
-            case "error":
-                NotificationManager.error(message, "ERROR");
-                break;
-            case "info":
-                NotificationManager.info(message, "INFO");
-            default:
-                break;
-        }
-    };
-
     const [user, setUser] = useState({
         email: "",
         password: "",
     });
 
-    const config = {
+    /*const config = {
         headers: {Authorization: `Bearer ${localStorage.getItem("tokenStore")}`}
-    };
+    };*/
 
     useEffect(() => {
         if (localStorage) {

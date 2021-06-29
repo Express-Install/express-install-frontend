@@ -15,9 +15,9 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import "react-notifications/lib/notifications.css";
 import {
-  NotificationContainer,
-  NotificationManager,
+  NotificationContainer
 } from "react-notifications";
+import {createNotification} from "../Helper/notification";
 import {API_BaseURL} from "../constants/api";
 
 const useStyles = makeStyles((theme) => ({
@@ -53,25 +53,11 @@ export default function SignUp() {
     password: "",
   });
 
-  const createNotification = (type, message) => {
-    switch (type) {
-      case "success":
-        NotificationManager.success(message, "SUCCESS");
-        break;
-      case "error":
-        NotificationManager.error(message, "ERROR");
-        break;
-      case "info":
-        NotificationManager.info(message, "INFO");
-      default:
-        break;
-    }
-  };
-
   let history = useHistory();
 
   const registerSubmit = async (e) => {
     e.preventDefault();
+
     const userName = user.firstName + " " + user.lastName;
     if (!userName || !user.email || !user.password) {
       createNotification("error", "Please complete all information");
