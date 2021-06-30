@@ -11,17 +11,15 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import {makeStyles} from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import "react-notifications/lib/notifications.css";
 import {
-    NotificationContainer,
-    // NotificationManager,
+    NotificationContainer
 } from "react-notifications";
 import {createNotification} from "../Helper/notification";
-import {API_BaseURL} from "../constants/api";
+import {API_BaseURL, Login_Account_API} from "../constants/api";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -85,7 +83,7 @@ export default function SignIn() {
             return;
         }
         try {
-            const res = await axios.post(API_BaseURL + "/v1/auth/login", {
+            const res = await axios.post(API_BaseURL + Login_Account_API, {
                 email: user.email,
                 password: user.password,
             });
@@ -100,7 +98,10 @@ export default function SignIn() {
             if (checked) {
                 localStorage.setItem("password", JSON.stringify(user.password));
             }
-            history.push("/");
+            createNotification("success", "Log in successfully!");
+            setTimeout(function () {
+                history.push("/");
+            }, 1000);
             /*Verified email*/
             // await axios.post(API_BaseURL + "/v1/auth/send-verification-email",
             //     {},

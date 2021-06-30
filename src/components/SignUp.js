@@ -18,7 +18,7 @@ import {
   NotificationContainer
 } from "react-notifications";
 import {createNotification} from "../Helper/notification";
-import {API_BaseURL} from "../constants/api";
+import {API_BaseURL, Register_Account_API} from "../constants/api";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -64,8 +64,8 @@ export default function SignUp() {
       return;
     }
     try {
-      const res = await axios.post(
-        API_BaseURL+"/v1/auth/register",
+      await axios.post(
+        API_BaseURL + Register_Account_API,
         {
           name: userName,
           email: user.email,
@@ -81,7 +81,7 @@ export default function SignUp() {
         localStorage.setItem("email", user.email);
       }
     } catch (err) {
-        createNotification("error", "");
+        createNotification("error", "Something wrong!");
     }
   };
 

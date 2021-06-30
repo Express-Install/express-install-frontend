@@ -9,6 +9,8 @@ export const createNotification = (type, message) => {
             break;
         case "info":
             NotificationManager.info(message, "INFO");
+        case "success":
+            NotificationManager.success(message, "SUCCESS");
         default:
             break;
     }

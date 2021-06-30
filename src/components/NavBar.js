@@ -1,13 +1,13 @@
 import {Component} from "react";
 import axios from "axios";
-import {API_BaseURL} from "../constants/api";
+import {API_BaseURL, Logout_Account_API} from "../constants/api";
 
 class NavBar extends Component {
     render() {
 
         const logoutUser = async () => {
             try{
-                 await axios.post(API_BaseURL+"/v1/auth/logout",
+                 await axios.post(API_BaseURL + Logout_Account_API,
                     {refreshToken: localStorage.getItem("refreshToken")},
                     {headers: {'Content-Type': 'application/json'}}
                     );
