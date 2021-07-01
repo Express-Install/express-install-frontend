@@ -28,7 +28,7 @@ class HomePageIntro extends Component {
                                 <strong>Lifehacker</strong>
                             </p>
                             <p>"This is insane. Save me a lot of time, Now i can pick up my son without delay time!"<br/>
-                                <strong>Mark Zukerburg</strong>
+                                <strong>Mark Tucker</strong>
                             </p>
                         </div>
                     </div>

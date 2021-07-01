@@ -11,9 +11,9 @@ class NavBar extends Component {
                     {refreshToken: localStorage.getItem("refreshToken")},
                     {headers: {'Content-Type': 'application/json'}}
                     );
-                await localStorage.clear();
+                 localStorage.clear();
                 // eslint-disable-next-line no-restricted-globals
-                await history.back();
+                history.back();
             }catch (err){
                 console.log(err);
             }
@@ -31,7 +31,6 @@ class NavBar extends Component {
                             <li onClick={logoutUser}><a href="#">Logout</a></li>
                         </ul>
                     </div>
-                    // <li><a style={{cursor: "pointer"}} href="/">Chào {displayName}</a></li>
                 )
             }else return (
                 <li><a href="/sign-in">Sign in/Sign up</a></li>
