@@ -1,0 +1,23 @@
+.header-modal,.body-modal{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.close-icon{
+    cursor: pointer;
+}
+
+.select{
+    width: 250px;
+}
+
+.btn-submit{
+    transform: translateY(40%);
+}
