@@ -8,6 +8,7 @@ import Form from "./Form/index";
 import Suggestion from "./Suggestion";
 import Footer from "./Footer";
 import ModalJob from "./Modal-job";
+import SideBar from "./SideBar";
 
 class Home extends Component {
   render() {
