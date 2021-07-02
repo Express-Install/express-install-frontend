@@ -11,9 +11,6 @@ services:
     networks:
       - express-install-backend_node-network
 
-volumes:
-  dbdata:
-
 networks:
   express-install-backend_node-network:
       external: true
