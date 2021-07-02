@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {makeStyles} from "@material-ui/core/styles";
 import Pagination from "./pagination";
 
 import queryString from "query-string";
@@ -9,10 +8,8 @@ import {API_BaseURL, Get_Packages_API} from "../../constants/api";
 import axios from "axios";
 import PackageList from "./PackageList";
 
-const useStyle = makeStyles((theme) => ({}));
 
 function Form() {
-    const classes = useStyle();
 
     const [packagesList, setPackagesList] = useState([]);
     const [pagination, setPagination] = useState({
@@ -51,14 +48,14 @@ function Form() {
     }
 
     function handleRecordChange() {
-        const {totalResults, page, limit} = pagination;
-        const currentPage = page;
+        const {totalResults, limit} = pagination;
+        /*const currentPage = page;
         let totalCount = 0;
         if (totalResults - (currentPage * limit) > 0) {
             totalCount = limit;
         } else {
             totalCount = totalResults - ((currentPage - 1) * limit);
-        }
+        }*/
         return (
             <div className="text-center">
                 <span className="records">
