@@ -11,9 +11,6 @@
 # production
 /build
 
-# NGIN ssl
-NGINX/nginx_secrets
-
 # misc
 .DS_Store
 .env.local
