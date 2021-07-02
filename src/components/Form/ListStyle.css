@@ -39,12 +39,21 @@
     padding: 20px;
     font-size: 15px;
     text-align: center;
+    width: 260px;
+    word-wrap: break-word;
 }
 
 input.larger {
     transform: scale(2);
     margin-top: 15px;
 }
-.checkbox-line{
 
+.current-page {
+    margin: 0px 10px;
+    font-size: 17px;
+}
+
+.records {
+    margin-top: 10px;
+    font-size: 15px;
 }

@@ -13,7 +13,8 @@ Pagination.defaultProps = {
 
 function Pagination(props) {
     const {pagination, onPageChange} = props;
-    const {page, limit, totalPages} = pagination;
+    const {page, limit, totalResults} = pagination;
+    const totalPages = Math.ceil(totalResults / limit);
 
 
     function handlePageChange(newPage) {
@@ -21,6 +22,15 @@ function Pagination(props) {
             onPageChange(newPage);
         }
     }
+
+    function showCurrentPage (){
+        return (
+            <span className="current-page">
+                {page}
+            </span>
+        )
+    }
+
     return (
         <div className="text-center mt-15">
             <button
@@ -30,6 +40,7 @@ function Pagination(props) {
                 <span className="fa fa-caret-left" aria-hidden="true"/> &nbsp;
                 Prev
             </button>
+            {showCurrentPage()}
             <button
                 disabled={page >= totalPages}
                 onClick={() => handlePageChange(page + 1 )}

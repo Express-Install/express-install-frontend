@@ -9,8 +9,7 @@ import {API_BaseURL, Get_Packages_API} from "../../constants/api";
 import axios from "axios";
 import PackageList from "./PackageList";
 
-const useStyle = makeStyles((theme) => ({
-}));
+const useStyle = makeStyles((theme) => ({}));
 
 function Form() {
     const classes = useStyle();
@@ -19,8 +18,9 @@ function Form() {
     const [pagination, setPagination] = useState({
         page: 1,
         limit: 20,
-        totalPages: 1
+        totalResults: 1
     });
+    const [offset, setOffset] = useState(0);
 
     const [filters, setFilters] = useState({
         page: 1,
@@ -33,19 +33,39 @@ function Form() {
                 const paramString = queryString.stringify(filters);
                 const res = await axios.get(`${API_BaseURL}${Get_Packages_API}?${paramString}`);
                 setPackagesList(res.data.results);
-                setPagination({page: res.data.page, limit: res.data.limit, totalPages: res.data.totalPages});
+                setPagination({page: res.data.page, limit: res.data.limit, totalResults: res.data.totalResults});
+                setOffset((res.data.page - 1) * res.data.limit);
             } catch (err) {
                 createNotification("error", "Cannot fetch packages list");
             }
         }
+
         fetchPackageList();
-    },[filters]);
+    }, [filters]);
 
     function handlePageChange(newPage) {
         setFilters({
-           ...filters,
-           page: newPage
+            ...filters,
+            page: newPage
         });
+    }
+
+    function handleRecordChange() {
+        const {totalResults, page, limit} = pagination;
+        const currentPage = page;
+        let totalCount = 0;
+        if (totalResults - (currentPage * limit) > 0) {
+            totalCount = limit;
+        } else {
+            totalCount = totalResults - ((currentPage - 1) * limit);
+        }
+        return (
+            <div className="text-center">
+                <span className="records">
+                    Showing app records <b>{totalResults === 0 ? 0 : offset + 1}</b> to <b>{offset + limit >= totalResults ? totalResults : offset + limit}</b>
+                </span>
+            </div>
+        );
     }
 
     return (
@@ -56,6 +76,7 @@ function Form() {
                 </div>
                 <PackageList packages={packagesList}/>
             </form>
+            {handleRecordChange()}
             <Pagination
                 pagination={pagination}
                 onPageChange={handlePageChange}
