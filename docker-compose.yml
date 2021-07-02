@@ -9,11 +9,11 @@ services:
     volumes:
       - .:/home/node/react-app:rw
     networks:
-      - node-network
+      - express-install-backend_node-network
 
 volumes:
   dbdata:
 
 networks:
-  node-network:
-    driver: bridge
+  express-install-backend_node-network:
+      external: true
