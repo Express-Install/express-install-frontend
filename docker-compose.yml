@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  react-app:
+    build: .
+    image: react-app
+    ports:
+      - '4000:4000'
+    volumes:
+      - .:/home/node/react-app:rw
+    networks:
+      - react-network
+
+  nginx-react:
+    image: jonasal/nginx-certbot:latest
+    container_name: NGINX-react
+    restart: unless-stopped
+    environment:
+      CERTBOT_EMAIL: mrquangkhai98@gmail.com
+    ports:
+      - '80:80'
+      - '443:443'
+    depends_on:
+      - react-app
+    volumes:
+      - ./NGINX/nginx_secrets:/etc/letsencrypt
+      - ./NGINX/user_conf.d:/etc/nginx/user_conf.d
+    networks:
+      - react-network
+
+volumes:
+  dbdata:
+
+networks:
+  react-network:
+    driver: bridge
