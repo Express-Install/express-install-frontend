@@ -9,11 +9,11 @@ services:
     volumes:
       - .:/home/node/react-app:rw
     networks:
-      - react-network
+      - node-network
 
 volumes:
   dbdata:
 
 networks:
-  react-network:
+  node-network:
     driver: bridge
