@@ -113,7 +113,7 @@ export default function SignIn() {
     };
 
     const isRememberMe = (e) => {
-        setChecked(checked ? false : true);
+        setChecked(!checked);
     };
 
     // const sendVerifyEmail = async () => {
@@ -190,7 +190,7 @@ export default function SignIn() {
                     </Button>
                     <Grid container>
                         <Grid item xs>
-                            <Link href="forgot" variant="body2">
+                            <Link href="/forgot" variant="body2">
                                 Forgot password?
                             </Link>
                         </Grid>
