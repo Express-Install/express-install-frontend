@@ -9,8 +9,8 @@ services:
     volumes:
       - .:/home/node/react-app:rw
     networks:
-      - express-install-backend_node-network
+      - shared-network
 
 networks:
-  express-install-backend_node-network:
-      external: true
+  shared-network:
+    driver: bridge
