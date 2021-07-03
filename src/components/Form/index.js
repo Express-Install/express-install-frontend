@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from 'react';
 import Pagination from "./pagination";
 
-import queryString from "query-string";
+import queryString, {stringify} from "query-string";
 import NotificationContainer from "react-notifications";
 import {createNotification} from "../../Helper/notification";
 import {API_BaseURL, Get_Packages_API} from "../../constants/api";
 import axios from "axios";
 import PackageList from "./PackageList";
+import ModalApp from "./ModalApp";
 
 
 function Form() {
-
     const [packagesList, setPackagesList] = useState([]);
     const [pagination, setPagination] = useState({
         page: 1,
@@ -20,11 +20,14 @@ function Form() {
     const [offset, setOffset] = useState(0);
 
     const [filters, setFilters] = useState({
+        category: 'common',
         page: 1,
         limit: 120
     });
+    const [toggleModal, setToggleModal] = useState(false);
 
     useEffect(() => {
+
         async function fetchPackageList() {
             try {
                 const paramString = queryString.stringify(filters);
@@ -38,6 +41,7 @@ function Form() {
         }
 
         fetchPackageList();
+        //handlePickJob();
     }, [filters]);
 
     function handlePageChange(newPage) {
@@ -49,13 +53,6 @@ function Form() {
 
     function handleRecordChange() {
         const {totalResults, limit} = pagination;
-        /*const currentPage = page;
-        let totalCount = 0;
-        if (totalResults - (currentPage * limit) > 0) {
-            totalCount = limit;
-        } else {
-            totalCount = totalResults - ((currentPage - 1) * limit);
-        }*/
         return (
             <div className="text-center">
                 <span className="records">
@@ -64,6 +61,35 @@ function Form() {
             </div>
         );
     }
+
+    function openModal () {
+        setToggleModal(true)
+    }
+
+    function handleCloseModal () {
+        setToggleModal(false);
+    }
+
+    function renderModal () {
+        let open = toggleModal;
+        let xhtml = null;
+        xhtml = (
+            <ModalApp open={open} onCloseForm={handleCloseModal}/>
+        );
+        return xhtml;
+    }
+
+    /*function handlePickJob () {
+        let job = null;
+        if (localStorage.getItem("job")){
+            job = localStorage.getItem("job");
+            setFilters({
+                ...filters,
+                category: stringify(job)
+            });
+        }
+    }*/
+
 
     return (
         <div>
@@ -79,11 +105,12 @@ function Form() {
                 onPageChange={handlePageChange}
             />
             {/*<div className="container"></div>*/}
+            {renderModal()}
             <div className="container">
-                <h3 className="text-center">2.Download and run your custom installer</h3>
+                <h3 className="text-center">2.Get installing code & run it in powershell</h3>
                 <p className="text-center text-danger">Check off your apps again</p>
-                <p className="text-center" style={{justifyContent: "space-around"}}>
-                    <button type="submit" className="btn btn-primary btn-lg" disabled>Get your apps</button>
+                <p className="text-center">
+                    <button type="submit" className="btn btn-primary btn-lg" onClick={openModal}>Get your apps</button>
                 </p>
             </div>
             <p className="text-center"><small>Our installer works on Windows 10, 8.x, 7, and equivalent Server

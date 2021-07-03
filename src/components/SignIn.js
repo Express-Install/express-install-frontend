@@ -90,6 +90,7 @@ export default function SignIn() {
             setUser({email: "", password: ""});
             localStorage.setItem("tokenStore", res.data.tokens.access.token);
             localStorage.setItem("refreshToken", res.data.tokens.refresh.token);
+            localStorage.setItem("userID", res.data.user.id);
             if (localStorage.getItem("userName")) {
                 console.log(localStorage.getItem("userName"));
             } else {

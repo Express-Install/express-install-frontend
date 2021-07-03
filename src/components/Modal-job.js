@@ -11,6 +11,7 @@ import Button from "@material-ui/core/Button";
 import "../assets/css/Modal.css";
 import axios from "axios";
 import {API_BaseURL, Category_API} from "../constants/api";
+import PropTypes from "prop-types";
 
 function getModalStyle() {
   const top = 50;
@@ -39,7 +40,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ModalJob() {
+ModalJob.propTypes = {
+  onGetJob: PropTypes.func
+}
+
+export default function ModalJob(props) {
+  const {onGetJob} = props
   const jobs = [
     "Common",
     "IT",
@@ -80,10 +86,10 @@ export default function ModalJob() {
     if(state){
       try {
         const res = await axios.get(API_BaseURL + Category_API + state.job);
-        console.log(res)
+        localStorage.setItem("job", state.job);
         setOpen(false)
       } catch (err) {
-        
+        console.log("Fail to pick a job", err);
       }
     }else{
 
@@ -109,8 +115,10 @@ export default function ModalJob() {
             }}
             className="select">
             <option aria-label="None" value="" />
-            {jobs.map((job) => (
-              <option value={job}>{job}</option>
+            {jobs.map((job,id = 0) => (
+              <option
+                  key={id}
+                  value={job}>{job}</option>
             ))}
           </Select>
         </FormControl>

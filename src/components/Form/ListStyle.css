@@ -57,3 +57,19 @@ input.larger {
     margin-top: 10px;
     font-size: 15px;
 }
+
+.header-modal,.body-modal{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.close-icon{
+    cursor: pointer;
+}

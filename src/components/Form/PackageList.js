@@ -13,7 +13,7 @@ PackageList.defaultProps = {
 }
 
 function PackageList(props) {
-    const {packages, onPackagesClick} = props;
+    const {packages} = props;
     return (
         <div className="container">
             <div className="grid-container">
