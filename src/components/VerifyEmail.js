@@ -36,7 +36,6 @@ export default function VerifyEmail() {
             createNotification("error", "Email verification failed!");
         }
         history.push("/");
-        console.log(verifyToken);
     };
 
     verify();

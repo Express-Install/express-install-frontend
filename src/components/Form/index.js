@@ -107,7 +107,7 @@ function Form() {
             {/*<div className="container"></div>*/}
             {renderModal()}
             <div className="container">
-                <h3 className="text-center">2.Get installing code & run it in powershell</h3>
+                <h3 className="text-center">2.Get installing code & run it in Powershell as Administrators</h3>
                 <p className="text-center text-danger">Check off your apps again</p>
                 <p className="text-center">
                     <button type="submit" className="btn btn-primary btn-lg" onClick={openModal}>Get your apps</button>

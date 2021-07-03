@@ -12,6 +12,26 @@ PackageList.defaultProps = {
     onPackagesClick: null
 }
 
+let pickedApp = [];
+const handlePickApp = (packageName,event) => {
+    if (event.target.checked === true) {
+        pickedApp.push(packageName);
+    } else {
+        removeItem(pickedApp, packageName);
+    }
+
+    console.log(pickedApp);
+}
+
+function removeItem(array, item){
+    for(const i in array){
+        if(array[i]===item){
+            array.splice(i,1);
+            break;
+        }
+    }
+}
+
 function PackageList(props) {
     const {packages} = props;
     return (
@@ -24,7 +44,15 @@ function PackageList(props) {
                         </h4>
                         <span className="label label-danger">Description</span><i>: {item.summary}</i>
                         <br/><span className="label label-success">Download</span>: {item.download}<br/>
-                        <span className="checkbox-line"><i>Pick this: </i> &nbsp;<input type="checkbox" className="larger" name="checkBox1" /></span>
+                        <span className="checkbox-line"><i>Pick this: </i> &nbsp;<input type="checkbox"
+                                                                                        className="larger"
+                                                                                        name="checkBox1"
+                                                                                        // checked={handleChecked}
+                                                                                        onChange={(e) => {
+                                                                                            handlePickApp(item.packageName,e)
+                                                                                        }}/></span>
+                        {/* eslint-disable-next-line react/style-prop-object */}
+                        {/*<span className="packageName" >{item.packageName}</span>*/}
                     </div>
                 ))}
             </div>
