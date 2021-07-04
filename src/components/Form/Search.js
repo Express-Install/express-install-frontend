@@ -12,6 +12,9 @@ const useStyles = makeStyles(theme => ({
         float: "right",
         marginBottom: 10,
     },
+    searchField: {
+        width: "30vw",
+    },
 }));
 
 function Search(props) {
@@ -19,7 +22,7 @@ function Search(props) {
 
     return (
         <form className={classes.root}>
-            <TextField label="Search field" type="search" variant="outlined"/>
+            <TextField className={classes.searchField} label="Search field" type="search" variant="outlined"/>
             <button className="fa fa-search" disabled="true"/>
         </form>
     );

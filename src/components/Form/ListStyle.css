@@ -44,7 +44,7 @@
     padding: 20px;
     font-size: 15px;
     text-align: center;
-    width: 290px;
+    width: 260px;
     word-wrap: break-word;
     border-radius: 10px;
     box-shadow: rgb(255 255 255 / 50%) 0px 39px 56px -36px inset,
@@ -85,8 +85,4 @@ input.larger {
 
 .close-icon{
     cursor: pointer;
-}
-
-.container {
-    width: 85%;
 }
