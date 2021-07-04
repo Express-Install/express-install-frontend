@@ -24,13 +24,14 @@
 .grid-container {
     display: grid;
     grid-template-columns: auto auto auto auto;
-    background-color: #2196F3;
+    background-color: rgb(199, 128, 255) ;
     padding: 10px;
     height: 40vw;
     grid-column-gap: 20px;
     grid-row-gap: 20px;
     overflow-y: scroll;
     border-radius: 8px;
+    /*background: linear-gradient(150deg,rgb(199, 128, 255) 30%, rgb(0, 228, 228) 0%);*/
 }
 
 .packageName{
@@ -38,13 +39,21 @@
 }
 
 .grid-item {
-    background-color: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(0, 0, 0, 0.8);
+    background-color: rgba(255, 255, 255, 0.25);
+    /*border: 1px solid rgba(255, 255, 255, 0.18);*/
     padding: 20px;
     font-size: 15px;
     text-align: center;
     width: 260px;
     word-wrap: break-word;
+    border-radius: 10px;
+    box-shadow: rgb(255 255 255 / 50%) 0px 39px 56px -36px inset,
+    rgb(0 228 228 / 30%) 0px 1px 4px 0px inset,
+    rgb(0 228 228 / 30%) 0px -82px 68px -64px inset,
+    rgb(0 228 228 / 30%) 0px 98px 100px -48px inset,
+    rgb(0 228 228 / 30%) 0px 4px 18px 0px inset,
+    rgb(0 228 228 / 20%) 0px 1px 40px 0px inset,
+    rgb(0 228 228 / 20%) 0px 1px 40px 0px inset;
 }
 
 input.larger {
