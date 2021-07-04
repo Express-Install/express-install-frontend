@@ -1,27 +1,20 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import './ListStyle.css';
 
 PackageList.propTypes = {
     packages: PropTypes.array,
+    pickedApp: PropTypes.array,
     onPackagesClick: PropTypes.func
 };
 
 PackageList.defaultProps = {
     packages: [],
+    pickedApp: [],
     onPackagesClick: null
 }
 
-let pickedApp = [];
-const handlePickApp = (packageName,event) => {
-    if (event.target.checked === true) {
-        pickedApp.push(packageName);
-    } else {
-        removeItem(pickedApp, packageName);
-    }
-
-    console.log(pickedApp);
-}
+//let pickedApp = [];
 
 function removeItem(array, item){
     for(const i in array){
@@ -33,7 +26,20 @@ function removeItem(array, item){
 }
 
 function PackageList(props) {
-    const {packages} = props;
+    const {packages, onGetPickedApp} = props;
+    const [pickedApp, setPickedApp] = useState([]);
+
+    const handlePickApp = (packageName,event) => {
+        if (event.target.checked === true) {
+            pickedApp.push(packageName);
+        } else {
+            removeItem(pickedApp, packageName);
+        }
+        onGetPickedApp(pickedApp);
+        return pickedApp;
+        //localStorage.setItem("pickedApp", JSON.stringify(pickedApp));
+    }
+
     return (
         <div className="container">
             <div className="grid-container">

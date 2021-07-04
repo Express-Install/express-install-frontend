@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Pagination from "./pagination";
 
-import queryString, {stringify} from "query-string";
+import queryString from "query-string";
 import NotificationContainer from "react-notifications";
 import {createNotification} from "../../Helper/notification";
 import {API_BaseURL, Get_Packages_API} from "../../constants/api";
@@ -25,6 +25,7 @@ function Form() {
         limit: 120
     });
     const [toggleModal, setToggleModal] = useState(false);
+    const [pickedApp, setPickedApp] = useState([]);
 
     useEffect(() => {
 
@@ -62,62 +63,69 @@ function Form() {
         );
     }
 
-    function openModal () {
+    function openModal() {
         setToggleModal(true)
     }
 
-    function handleCloseModal () {
+    function handleCloseModal() {
         setToggleModal(false);
     }
 
-    function renderModal () {
+    function renderModal() {
         let open = toggleModal;
         let xhtml = null;
-        xhtml = (
-            <ModalApp open={open} onCloseForm={handleCloseModal}/>
-        );
+        if (open === true) {
+            xhtml = (
+                <ModalApp open={open} app={pickedApp} onCloseForm={handleCloseModal}/>
+            );
+        }
         return xhtml;
     }
 
-    /*function handlePickJob () {
-        let job = null;
-        if (localStorage.getItem("job")){
-            job = localStorage.getItem("job");
-            setFilters({
-                ...filters,
-                category: stringify(job)
-            });
-        }
-    }*/
+    function handlePickedApp (app){
+        setPickedApp(app);
+    }
 
 
-    return (
-        <div>
-            <form>
-                <div className="container">
-                    <h3 className="text-center">1.Pick the apps you want</h3>
-                </div>
-                <PackageList packages={packagesList}/>
-            </form>
-            {handleRecordChange()}
-            <Pagination
-                pagination={pagination}
-                onPageChange={handlePageChange}
-            />
-            {/*<div className="container"></div>*/}
-            {renderModal()}
+
+/*function handlePickJob () {
+    let job = null;
+    if (localStorage.getItem("job")){
+        job = localStorage.getItem("job");
+        setFilters({
+            ...filters,
+            category: stringify(job)
+        });
+    }
+}*/
+
+return (
+    <div>
+        <form>
             <div className="container">
-                <h3 className="text-center">2.Get installing code & run it in Powershell as Administrators</h3>
-                <p className="text-center text-danger">Check off your apps again</p>
-                <p className="text-center">
-                    <button type="submit" className="btn btn-primary btn-lg" onClick={openModal}>Get your apps</button>
-                </p>
+                <h3 className="text-center">1.Pick the apps you want</h3>
             </div>
-            <p className="text-center"><small>Our installer works on Windows 10, 8.x, 7, and equivalent Server
-                versions.</small></p>
-            <NotificationContainer/>
+            <PackageList packages={packagesList} onGetPickedApp={handlePickedApp}/>
+        </form>
+        {handleRecordChange()}
+        <Pagination
+            pagination={pagination}
+            onPageChange={handlePageChange}
+        />
+        {/*<div className="container"></div>*/}
+        {renderModal()}
+        <div className="container">
+            <h3 className="text-center">2.Get installing code & run it in Powershell as Administrators</h3>
+            <p className="text-center text-danger">Check off your apps again</p>
+            <p className="text-center">
+                <button type="submit" className="btn btn-primary btn-lg" onClick={openModal}>Get your apps</button>
+            </p>
         </div>
-    );
+        <p className="text-center"><small>Our installer works on Windows 10, 8.x, 7, and equivalent Server
+            versions.</small></p>
+        <NotificationContainer/>
+    </div>
+);
 }
 
 export default Form;

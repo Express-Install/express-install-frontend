@@ -11,7 +11,6 @@ import Button from "@material-ui/core/Button";
 import "../assets/css/Modal.css";
 import axios from "axios";
 import {API_BaseURL, Category_API} from "../constants/api";
-import PropTypes from "prop-types";
 
 function getModalStyle() {
   const top = 50;
@@ -40,12 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-ModalJob.propTypes = {
-  onGetJob: PropTypes.func
-}
-
-export default function ModalJob(props) {
-  const {onGetJob} = props
+export default function ModalJob() {
   const jobs = [
     "Common",
     "IT",

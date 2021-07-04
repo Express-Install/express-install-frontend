@@ -6,6 +6,7 @@ import Home from "./components/Home";
 import SignIn from "./components/SignIn";
 import SignUp from "./components/SignUp";
 import VerifyEmail from "./components/VerifyEmail";
+//import test1 from './test1';
 
 class App extends Component {
     render() {

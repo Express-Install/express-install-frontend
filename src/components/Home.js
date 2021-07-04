@@ -11,23 +11,17 @@ import ModalJob from "./Modal-job";
 import SideBar from "./SideBar";
 
 class Home extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            job: ''
-        }
-    }
 
     render() {
-        let getJob = (job) => {
+        /*let getJob = (job) => {
             this.setState({
                 job: job
             });
-        }
+        }*/
 
     return (
       <div>
-        <ModalJob onGetJob={getJob}/>
+        <ModalJob/>
         <NavBar />
         <HomePageIntro />
         <div className="seperate" />
@@ -43,7 +37,7 @@ class Home extends Component {
           </p>
         </div>
         {/*Form*/}
-        <Form job={this.state.job}/>
+        <Form/>
         <div className="separate" />
         {/*Suggestion*/}
         <Suggestion />
