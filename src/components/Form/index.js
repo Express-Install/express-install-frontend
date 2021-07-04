@@ -84,52 +84,48 @@ function Form() {
         return xhtml;
     }
 
-    function handlePickedApp (app){
+    function handlePickedApp(app) {
         setPickedApp(app);
     }
 
 
+    /*function handlePickJob () {
+        let job = null;
+        if (localStorage.getItem("job")){
+            job = localStorage.getItem("job");
+            setFilters({
+                ...filters,
+                category: stringify(job)
+            });
+        }
+    }*/
 
-/*function handlePickJob () {
-    let job = null;
-    if (localStorage.getItem("job")){
-        job = localStorage.getItem("job");
-        setFilters({
-            ...filters,
-            category: stringify(job)
-        });
-    }
-}*/
-
-return (
-    <div>
-        <form>
+    return (
+        <div>
             <div className="container">
                 <h3 className="text-center">1.Pick the apps you want</h3>
                 <Search/>
             </div>
             <PackageList packages={packagesList} onGetPickedApp={handlePickedApp}/>
-
-        </form>
-        {handleRecordChange()}
-        <Pagination
-            pagination={pagination}
-            onPageChange={handlePageChange}
-        />
-        {/*<div className="container"></div>*/}
-        {renderModal()}
-        <div className="container">
-            <h3 className="text-center">2.Get installing code & run it in Powershell as Administrators</h3>
-            <p className="text-center text-danger">Check off your apps again</p>
-            <p className="text-center">
-                <button type="submit" className="btn btn-primary btn-lg" onClick={openModal}>Get your apps</button>
-            </p>
+            {handleRecordChange()}
+            <Pagination
+                pagination={pagination}
+                onPageChange={handlePageChange}
+            />
+            {/*<div className="container"></div>*/}
+            {renderModal()}
+            <div className="container">
+                <h3 className="text-center">2.Get installing code & run it in Powershell as Administrators</h3>
+                <p className="text-center text-danger">Check off your apps again</p>
+                <p className="text-center">
+                    <button type="submit" className="btn btn-primary btn-lg" onClick={openModal}>Get your apps</button>
+                </p>
+            </div>
+            <p className="text-center"><small>Our installer works on Windows 10, 8.x, 7, and equivalent Server
+                versions.</small></p>
+            <NotificationContainer/>
         </div>
-        <p className="text-center"><small>Our installer works on Windows 10, 8.x, 7, and equivalent Server
-            versions.</small></p>
-        <NotificationContainer/>
-    </div>
-);
+    );
 }
 
 export default Form;

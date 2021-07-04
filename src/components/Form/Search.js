@@ -23,7 +23,7 @@ function Search(props) {
     return (
         <form className={classes.root}>
             <TextField className={classes.searchField} label="Search field" type="search" variant="outlined"/>
-            <button className="fa fa-search" disabled="true"/>
+            <button className="fa fa-search" disabled/>
         </form>
     );
 }
