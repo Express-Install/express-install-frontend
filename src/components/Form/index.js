@@ -23,7 +23,8 @@ function Form() {
     const [filters, setFilters] = useState({
         category: 'common',
         page: 1,
-        limit: 120
+        limit: 120,
+        sortBy: 'download:desc'
     });
     const [toggleModal, setToggleModal] = useState(false);
     const [pickedApp, setPickedApp] = useState([]);
