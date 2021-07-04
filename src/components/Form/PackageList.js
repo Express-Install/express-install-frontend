@@ -53,7 +53,7 @@ function PackageList(props) {
                         <span className="checkbox-line"><i>Pick this: </i> &nbsp;<input type="checkbox"
                                                                                         className="larger"
                                                                                         name="checkBox1"
-                                                                                        // checked={handleChecked}
+                            // checked={handleChecked}
                                                                                         onChange={(e) => {
                                                                                             handlePickApp(item.packageName,e)
                                                                                         }}/></span>

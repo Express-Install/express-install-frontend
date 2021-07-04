@@ -3,4 +3,4 @@ version: '3'
 services:
   react-app:
     container_name: react-app-prod
-    command: yarn start
+    command: yarn build && serve -s build
