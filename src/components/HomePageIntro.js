@@ -8,8 +8,8 @@ class HomePageIntro extends Component {
                     <div className="row">
                         <div className="col-sm-6">
                             <h4>Install your programs at once</h4>
-                            <p>No toolbar, no next option, just pick apps and 1 click install</p>
-                            <img src={process.env.PUBLIC_URL + 'image/example-install.png'} alt="Example install" className="img-responsive img-rounded"/>
+                            <p><i><b>No toolbar, no next option, just pick apps and copy code your installing code to powershell</b></i></p>
+                            <img src={process.env.PUBLIC_URL + 'image/example-install1.png'} alt="Example install" className="img-responsive img-rounded"/>
                         </div>
                         <div className="col-sm-6">
                             <h4>Simple as that!</h4>

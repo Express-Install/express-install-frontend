@@ -1,16 +1,19 @@
 /** @format */
 
-import { Component } from "react";
+import React, { Component } from "react";
 import axios from "axios";
-import { API_BaseURL, Logout_Account_API } from "../constants/api";
+import { API_BaseURL, Logout_Account_API } from "../../constants/api";
 import ShoppingBasketRoundedIcon from "@material-ui/icons/ShoppingBasketRounded";
-import SideBar from "./SideBar";
+import SideBar from "../SideBar";
+import HowToUse from "./HowToUse";
+import ModalApp from "../Form/ModalApp";
 
 class NavBar extends Component {
   constructor() {
     super();
     this.state = {
       toggle: false,
+      toggleHowToUse: false
     };
   }
 
@@ -60,6 +63,29 @@ class NavBar extends Component {
       this.setState({ toggle : this.state.toggle ? false : true });
     };
 
+    const openHowToUse = () => {
+      this.setState({
+        toggleHowToUse: true
+      });
+    }
+
+    const closeHowToUse = () => {
+      this.setState({
+        toggleHowToUse: false
+      });
+    }
+
+    const renderHowToUse = () => {
+      let open = this.state.toggleHowToUse;
+      let xhtml = null;
+      if (open === true) {
+        xhtml = (
+           <HowToUse open={open} onCloseForm={closeHowToUse}/>
+        );
+      }
+      return xhtml;
+    }
+
     return (
       <>
         <nav className="navbar-fixed-top">
@@ -79,9 +105,12 @@ class NavBar extends Component {
             <li>
               <a href="#">Github</a>
             </li>
-            <li>
-              <a href="#">How to use</a>
+            <li onClick={openHowToUse}>
+              <a href="#">
+                How to use
+              </a>
             </li>
+            {renderHowToUse()}
             {isLogin()}
             <li>
               <a href="#">

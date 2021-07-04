@@ -2,7 +2,7 @@
 
 import "../App.css";
 import { Component } from "react";
-import NavBar from "./NavBar";
+import NavBar from "./NavBar/NavBar";
 import HomePageIntro from "./HomePageIntro";
 import Form from "./Form/index";
 import Suggestion from "./Suggestion";

@@ -8,6 +8,7 @@ import {API_BaseURL, Get_Packages_API} from "../../constants/api";
 import axios from "axios";
 import PackageList from "./PackageList";
 import ModalApp from "./ModalApp";
+import Search from "./Search";
 
 
 function Form() {
@@ -104,8 +105,10 @@ return (
         <form>
             <div className="container">
                 <h3 className="text-center">1.Pick the apps you want</h3>
+                <Search/>
             </div>
             <PackageList packages={packagesList} onGetPickedApp={handlePickedApp}/>
+
         </form>
         {handleRecordChange()}
         <Pagination

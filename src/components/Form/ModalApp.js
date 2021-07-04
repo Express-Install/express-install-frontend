@@ -44,6 +44,9 @@ const useStyle = makeStyles(theme => ({
         margin: theme.spacing(1),
         minWidth: 120,
     },
+    textarea: {
+        minWidth: 300
+    }
 }));
 
 function ModalApp(props) {
@@ -103,14 +106,14 @@ function ModalApp(props) {
             </div>
             <div className="body-modal">
                 <FormControl>
-                    <TextareaAutosize readOnly className="textarea" value={script} aria-label="minimum height" rowsMin={3} placeholder="Your installing code here...">
+                    <TextareaAutosize readOnly className={classes.textarea} value={script} aria-label="minimum height" rowsMin={3} placeholder="Your installing code here...">
                         {script}
                     </TextareaAutosize>
                 </FormControl>
-                <Button variant="contained" color="primary" className="btn-submit" onClick={handleCopy}>
-                    Copy
-                </Button>
             </div>
+            <Button variant="contained" color="primary" className="btn-submit" onClick={handleCopy}>
+                Copy
+            </Button>
         </div>
     );
     return (
