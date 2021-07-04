@@ -18,7 +18,8 @@ function SideBar(props) {
     }, [localStorage.getItem("pickedApp")]);
 
     const handleDeletePackage = (e) => {
-        const newList = app.filter((item) => item.id !== e);
+        const newList = pickedApp.filter((item) => item !== e);
+        localStorage.setItem("pickedApp", JSON.stringify(newList));
         if (onGetPickedApp){
             onGetPickedApp(newList);
         }
@@ -38,13 +39,13 @@ function SideBar(props) {
                 />
             </div>
             <div className="content-side-bar">
-                {app.map((item, id=0) =>(
+                {pickedApp.map((item, id=0) =>(
                    <div key={id} className="package">
                        <p className="name-package">{item}</p>
                        <DeleteOutlineIcon
                            className="delete-package"
                            value={item}
-                           onClick={() => handleDeletePackage(id)}
+                           onClick={() => handleDeletePackage(item)}
                        />
                    </div>
                 ))}
