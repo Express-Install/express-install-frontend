@@ -11,10 +11,14 @@ SideBar.propTypes = {
 
 function SideBar(props) {
     const {toggle, app, handleToggleSideBar, onGetPickedApp} = props;
-    const [pickedApp, setPickedApp] = useState([]);
+    const [pickedApp, setPickedApp] = useState([
+        "DumbApp","DumbApp1"
+    ]);
 
     useEffect(() => {
-        setPickedApp(JSON.parse(localStorage.getItem("pickedApp")));
+        if (localStorage.getItem("pickedApp")){
+            setPickedApp(JSON.parse(localStorage.getItem("pickedApp")));
+        }
     }, [localStorage.getItem("pickedApp")]);
 
     const handleDeletePackage = (e) => {
