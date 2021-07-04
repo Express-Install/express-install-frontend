@@ -36,8 +36,9 @@ function PackageList(props) {
             removeItem(pickedApp, packageName);
         }
         onGetPickedApp(pickedApp);
+        localStorage.setItem("pickedApp", JSON.stringify(pickedApp));
         return pickedApp;
-        //localStorage.setItem("pickedApp", JSON.stringify(pickedApp));
+
     }
 
     return (

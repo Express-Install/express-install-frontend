@@ -56,6 +56,7 @@ function ModalApp(props) {
     const [script, setScript] = useState('');
 
     const pickedApp = app;
+    console.log("pickedApp", pickedApp);
     const userID = localStorage.getItem("userID") === null ? '' : localStorage.getItem("userID");
     /*const configScriptAPI = {
         packages: pickedApp,

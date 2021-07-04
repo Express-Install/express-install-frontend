@@ -9,6 +9,8 @@ import axios from "axios";
 import PackageList from "./PackageList";
 import ModalApp from "./ModalApp";
 import Search from "./Search";
+import SideBar from "./SideBar";
+import ShoppingBasketRoundedIcon from "@material-ui/icons/ShoppingBasketRounded";
 
 
 function Form() {
@@ -27,6 +29,7 @@ function Form() {
         sortBy: 'download:desc'
     });
     const [toggleModal, setToggleModal] = useState(false);
+    const [toggleSideBar, setToggleSideBar] = useState(false);
     const [pickedApp, setPickedApp] = useState([]);
 
     useEffect(() => {
@@ -52,6 +55,7 @@ function Form() {
             ...filters,
             page: newPage
         });
+        window.scroll({top: 500, behavior: "smooth"});
     }
 
     function handleRecordChange() {
@@ -88,6 +92,10 @@ function Form() {
         setPickedApp(app);
     }
 
+    function handleToggleSideBar () {
+        setToggleSideBar(!toggleSideBar);
+    };
+
 
     /*function handlePickJob () {
         let job = null;
@@ -105,6 +113,12 @@ function Form() {
             <div className="container">
                 <h3 className="text-center">1.Pick the apps you want</h3>
                 <Search/>
+                <p className="text-center">
+                    <b><i>Your picked apps: </i></b>
+                    <a href="#">
+                        <ShoppingBasketRoundedIcon fontSize="large" onClick={handleToggleSideBar}/>
+                    </a>
+                </p>
             </div>
             <PackageList packages={packagesList} onGetPickedApp={handlePickedApp}/>
             {handleRecordChange()}
@@ -123,6 +137,7 @@ function Form() {
             </div>
             <p className="text-center"><small>Our installer works on Windows 10, 8.x, 7, and equivalent Server
                 versions.</small></p>
+            <SideBar toggle={toggleSideBar} app={pickedApp} onGetPickedApp={handlePickedApp} handleToggleSideBar={handleToggleSideBar}/>
             <NotificationContainer/>
         </div>
     );

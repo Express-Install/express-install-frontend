@@ -6,7 +6,6 @@ import { API_BaseURL, Logout_Account_API } from "../../constants/api";
 import ShoppingBasketRoundedIcon from "@material-ui/icons/ShoppingBasketRounded";
 import SideBar from "../SideBar";
 import HowToUse from "./HowToUse";
-import ModalApp from "../Form/ModalApp";
 
 class NavBar extends Component {
   constructor() {
@@ -112,11 +111,11 @@ class NavBar extends Component {
             </li>
             {renderHowToUse()}
             {isLogin()}
-            <li>
+            {/*<li>
               <a href="#">
                 <ShoppingBasketRoundedIcon fontSize="large" onClick={handleToggleSideBar}/>
               </a>
-            </li>
+            </li>*/}
           </ul>
           {/*<div className="burger"></div>*/}
         </nav>
