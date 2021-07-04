@@ -44,7 +44,7 @@
     padding: 20px;
     font-size: 15px;
     text-align: center;
-    width: 260px;
+    width: 290px;
     word-wrap: break-word;
     border-radius: 10px;
     box-shadow: rgb(255 255 255 / 50%) 0px 39px 56px -36px inset,
@@ -88,6 +88,5 @@ input.larger {
 }
 
 .container {
-    width: 100%;
-    padding: 0px 150px;
+    width: 85%;
 }
