@@ -3,6 +3,4 @@ version: '3'
 services:
   react-app:
     container_name: react-app-prod
-    command: >
-      sh -c "yarn build &&
-             serve -l 4000 -s build"
+    command: yarn prod
