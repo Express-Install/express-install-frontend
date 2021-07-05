@@ -55,7 +55,6 @@ function Form() {
             ...filters,
             page: newPage
         });
-        window.scroll({top: 500, behavior: "smooth"});
     }
 
     function handleRecordChange() {
