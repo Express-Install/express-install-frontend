@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {TextField} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
@@ -18,13 +18,28 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Search(props) {
+    const {handleSearch} = props;
     const classes = useStyles();
 
+    const [keyword, setKeyword] = useState('');
+
+    const onChangeKeyWord = (e) => {
+        let target = e.target;
+        let value = target.value;
+        setKeyword(value);
+    }
+
+    const onSearch = () => {
+        if (handleSearch){
+            handleSearch(keyword);
+        }
+    }
+
     return (
-        <form className={classes.root}>
-            <TextField className={classes.searchField} label="Search field" type="search" variant="outlined"/>
-            <button className="fa fa-search" disabled/>
-        </form>
+        <div className={classes.root}>
+            <TextField className={classes.searchField} name="keyword" value={keyword} label="Search field" type="search" variant="outlined" onChange={onChangeKeyWord}/>
+            <button className="fa fa-search" onClick={onSearch}/>
+        </div>
     );
 }
 

@@ -31,13 +31,19 @@ function Form() {
     const [toggleModal, setToggleModal] = useState(false);
     const [toggleSideBar, setToggleSideBar] = useState(false);
     const [pickedApp, setPickedApp] = useState([]);
+    const [keyword, setKeyword] = useState('');
 
     useEffect(() => {
 
         async function fetchPackageList() {
+            let paramString = '';
             try {
-                const paramString = queryString.stringify(filters);
-                const res = await axios.get(`${API_BaseURL}${Get_Packages_API}?${paramString}`);
+                if (keyword !== ''){
+                    paramString = `/find/${keyword}`;
+                }else {
+                    paramString = '?'+queryString.stringify(filters);
+                }
+                const res = await axios.get(`${API_BaseURL}${Get_Packages_API}${paramString}`);
                 setPackagesList(res.data.results);
                 setPagination({page: res.data.page, limit: res.data.limit, totalResults: res.data.totalResults});
                 setOffset((res.data.page - 1) * res.data.limit);
@@ -48,7 +54,7 @@ function Form() {
 
         fetchPackageList();
         //handlePickJob();
-    }, [filters]);
+    }, [filters, keyword]);
 
     function handlePageChange(newPage) {
         setFilters({
@@ -95,6 +101,10 @@ function Form() {
         setToggleSideBar(!toggleSideBar);
     };
 
+    function onSearch(keyword){
+        setKeyword(keyword);
+    }
+
 
     /*function handlePickJob () {
         let job = null;
@@ -111,7 +121,7 @@ function Form() {
         <div>
             <div className="container">
                 <h3 className="text-center">1.Pick the apps you want</h3>
-                <Search/>
+                <Search handleSearch={onSearch}/>
                 <p className="text-center">
                     <b><i>Your picked apps: </i></b>
                     <a href="#">

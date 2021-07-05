@@ -41,6 +41,10 @@ function PackageList(props) {
 
     }
 
+    /*const isChecked = () =>{
+
+    }*/
+
     return (
         <div className="container">
             <div className="grid-container">
