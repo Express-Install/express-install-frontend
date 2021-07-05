@@ -102,7 +102,7 @@ class NavBar extends Component {
               <a href="#">Help</a>
             </li>
             <li>
-              <a href="#">Github</a>
+              <a href="https://github.com/express-Install/" target="_blank">Github</a>
             </li>
             <li onClick={openHowToUse}>
               <a href="#">
