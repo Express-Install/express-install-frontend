@@ -86,7 +86,11 @@ export default function SignUp() {
             if (localStorage) {
                 localStorage.setItem("email", user.email);
             }
-            history.push("/sign-in");
+            createNotification("INFO", "Check your email for verification link!");
+            setTimeout(() => {
+                history.push("/sign-in");
+            }, 2000);
+
         } catch (err) {
             createNotification("error", "Something wrong!");
         }
