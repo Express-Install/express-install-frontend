@@ -29,17 +29,18 @@ function Search(props) {
         setKeyword(value);
     }
 
-    const onSearch = () => {
+    const onSearch = (e) => {
+        e.preventDefault();
         if (handleSearch){
             handleSearch(keyword);
         }
     }
 
     return (
-        <div className={classes.root}>
+        <form className={classes.root}>
             <TextField className={classes.searchField} name="keyword" value={keyword} label="Search field" type="search" variant="outlined" onChange={onChangeKeyWord}/>
             <button className="fa fa-search" onClick={onSearch}/>
-        </div>
+        </form>
     );
 }
 
